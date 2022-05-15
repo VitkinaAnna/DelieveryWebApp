@@ -1,0 +1,48 @@
+﻿@model IEnumerable<DelieveryWebApplication.Delievery>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Доставка</h1>
+
+<p>
+    <a asp-action="Create">Додати страву до замовлення</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dish)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dish.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.Client.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DelieveryId">Змінити</a> |
+                <a asp-action="Details" asp-route-id="@item.DelieveryId">Деталі</a> |
+                <a asp-action="Delete" asp-route-id="@item.DelieveryId">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
